@@ -115,18 +115,7 @@ launcher_program_t *Menu::LoadSettings( _TCHAR *ini_file, unsigned int *final_le
 							{
 								char *launch = buffer + loc;
 
-								if( got_name == 1 )
-								{
-									/* We have a name to associate with this */
-									strcpy_s( temp.location, MAX_GAME_LOCATION_LENGTH, launch );
-									got_name = 0;
-
-									/* Make a new spot for this, copy in */
-									(*final_length)++;
-									progs = (launcher_program_t *)realloc( progs, sizeof(launcher_program_t) * (*final_length) );
-									memcpy( progs + ((*final_length) - 1), &temp, sizeof(launcher_program_t) );
-									memset( &temp, 0, sizeof(temp) );
-								}
+								strcpy_s( temp.location, MAX_GAME_LOCATION_LENGTH, launch );
 							}
 						}
 					}

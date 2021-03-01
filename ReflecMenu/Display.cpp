@@ -66,10 +66,12 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				MultiByteToWideChar(CP_ACP, 0, globalMenu->GetEntryName(i), -1, wString, 4096);
 				DrawText(hdc, wString, -1, &rect, DT_SINGLELINE | DT_NOCLIP | DT_CENTER | DT_VCENTER);
 
-
+				wchar_t text1[MAX_ICON_LOCATION_LENGTH];
+				mbstowcs(text1, globalMenu->GetEntryIcon(i), strlen(globalMenu->GetEntryIcon(i)) + 1);
+				LPCWSTR test = text1;
 				HICON hIcon = (HICON)LoadImage(
 												NULL,  
-												TEXT("E:\\project\\nopay\\reflecmenu\\Debug\\test.ico"),   
+												test,   
 												IMAGE_ICON,      
 												0,               
 												0,

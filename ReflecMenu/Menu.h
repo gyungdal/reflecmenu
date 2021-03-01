@@ -9,7 +9,7 @@
 /* Constants for limitations on how long INI file pieces can be */
 #define MAX_GAME_NAME_LENGTH 63
 #define MAX_GAME_LOCATION_LENGTH 511
-
+#define MAX_ICON_LOCATION_LENGTH 511
 /* Number of games to display on one screen */
 #define GAMES_PER_PAGE 9
 
@@ -17,7 +17,7 @@ typedef struct
 {
 	char location[MAX_GAME_LOCATION_LENGTH + 1];
 	char name[MAX_GAME_NAME_LENGTH + 1];
-	char icon[MAX_GAME_NAME_LENGTH + 1];
+	char icon[MAX_ICON_LOCATION_LENGTH + 1];
 } launcher_program_t;
 
 class Menu

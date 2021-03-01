@@ -42,6 +42,15 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 	/* Initialize menu */
 	Menu *menu = new Menu(argv[1]);
 
+	wchar_t text1[MAX_ICON_LOCATION_LENGTH];
+	mbstowcs(text1, menu->GetEntryIcon(0), strlen(menu->GetEntryIcon(0)) + 1);
+	LPCWSTR test = text1;
+	MessageBox(
+		NULL,
+		TEXT("0 icon"),
+		test,
+		MB_ICONERROR | MB_OK | MB_DEFBUTTON1
+	); 
 	
 	if( menu->NumberOfEntries() < 1 )
 	{
