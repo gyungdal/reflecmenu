@@ -42,6 +42,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 	/* Initialize menu */
 	Menu *menu = new Menu(argv[1]);
 
+	
 	if( menu->NumberOfEntries() < 1 )
 	{
 		MessageBox(

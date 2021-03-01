@@ -17,6 +17,7 @@ typedef struct
 {
 	char location[MAX_GAME_LOCATION_LENGTH + 1];
 	char name[MAX_GAME_NAME_LENGTH + 1];
+	char icon[MAX_GAME_NAME_LENGTH + 1];
 } launcher_program_t;
 
 class Menu
@@ -28,6 +29,7 @@ class Menu
 		unsigned int NumberOfEntries() { return num_programs; }
 		char *GetEntryName(unsigned int game) { return settings[game].name; }
 		char *GetEntryPath(unsigned int game) { return settings[game].location; }
+		char* GetEntryIcon(unsigned int game) { return settings[game].icon; }
 
 		void Tick();
 		void ResetTimeout();

@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
+#include <winuser.h>
+#include <commctrl.h>
 
 #include "Display.h"
 #include "Menu.h"
@@ -7,7 +9,6 @@
 Menu *globalMenu;
 int globalResX, globalResY;
 bool globalQuit;
-
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)
@@ -30,8 +31,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			/* Paint the window background */
 			HBRUSH background = CreateSolidBrush(RGB(0,0,0));
             FillRect(hdc, &ps.rcPaint, background);
-			DeleteObject(background);
-
+		
 			/* Set up text display */
 			SetTextColor(hdc, RGB(240, 240, 240));
 			SetBkMode(hdc, TRANSPARENT);
@@ -65,6 +65,19 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				wchar_t* wString = new wchar_t[4096];
 				MultiByteToWideChar(CP_ACP, 0, globalMenu->GetEntryName(i), -1, wString, 4096);
 				DrawText(hdc, wString, -1, &rect, DT_SINGLELINE | DT_NOCLIP | DT_CENTER | DT_VCENTER);
+
+
+				HICON hIcon = (HICON)LoadImage(
+												NULL,  
+												TEXT("E:\\project\\nopay\\reflecmenu\\Debug\\test.ico"),   
+												IMAGE_ICON,      
+												0,               
+												0,
+												LR_LOADFROMFILE | LR_DEFAULTSIZE | LR_SHARED        
+											);
+
+				DrawIconEx(hdc, rect.left, rect.top, hIcon, ITEM_HEIGHT, ITEM_HEIGHT, 0, NULL, DI_NORMAL);
+
 				delete wString;
         	}
 
